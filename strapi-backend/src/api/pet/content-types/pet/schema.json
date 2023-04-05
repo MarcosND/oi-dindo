@@ -13,6 +13,21 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "weight": {
+      "type": "decimal"
+    },
+    "age": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "text"
+    },
+    "totalValue": {
+      "type": "float"
+    },
+    "valueEarned": {
+      "type": "float"
     }
   }
 }
