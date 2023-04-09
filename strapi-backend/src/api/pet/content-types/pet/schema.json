@@ -4,7 +4,8 @@
   "info": {
     "singularName": "pet",
     "pluralName": "pets",
-    "displayName": "pet"
+    "displayName": "pet",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -28,6 +29,34 @@
     },
     "valueEarned": {
       "type": "float"
+    },
+    "skills": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::skill.skill",
+      "mappedBy": "pet"
+    },
+    "ong": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::ong.ong",
+      "inversedBy": "pets"
+    },
+    "photo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "faqs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::faq.faq",
+      "mappedBy": "pet"
     }
   }
 }

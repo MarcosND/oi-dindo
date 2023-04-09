@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "addresses",
+  "info": {
+    "singularName": "address",
+    "pluralName": "addresses",
+    "displayName": "address"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "street": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "complement": {
+      "type": "string"
+    },
+    "number": {
+      "type": "integer"
+    },
+    "ongs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ong.ong",
+      "mappedBy": "address"
+    }
+  }
+}

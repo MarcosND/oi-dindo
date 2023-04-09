@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "faqs",
+  "info": {
+    "singularName": "faq",
+    "pluralName": "faqs",
+    "displayName": "faq",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "question": {
+      "type": "string"
+    },
+    "answer": {
+      "type": "string"
+    },
+    "ong": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::ong.ong",
+      "inversedBy": "faqs"
+    },
+    "pet": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::pet.pet",
+      "inversedBy": "faqs"
+    }
+  }
+}

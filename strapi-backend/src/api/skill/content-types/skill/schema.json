@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "skills",
+  "info": {
+    "singularName": "skill",
+    "pluralName": "skills",
+    "displayName": "skill"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "value": {
+      "type": "integer"
+    },
+    "pet": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::pet.pet",
+      "inversedBy": "skills"
+    }
+  }
+}
