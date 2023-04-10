@@ -7,6 +7,7 @@ import Home from '../pages/Home';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { SvgIconTypeMap } from '@mui/material';
 import { Home as HomeIcon, AccountBalance as OngIcon, Pets as PetIcon } from '@mui/icons-material';
+import Some from '../components/SomeComponent';
 
 function Router() {
 

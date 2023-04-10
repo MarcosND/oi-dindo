@@ -28,7 +28,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({pages}) => {
             <Box sx={{ overflowY: "scroll", overflowX: "scroll"}}>
                 <Outlet />
             </Box>
-
+            
             <BottomNavigation
             sx={{
                 width: "100%", 
