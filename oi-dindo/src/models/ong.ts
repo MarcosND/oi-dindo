@@ -1,0 +1,3 @@
+interface Ong {
+    id: number,
+}

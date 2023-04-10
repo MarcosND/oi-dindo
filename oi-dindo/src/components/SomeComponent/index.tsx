@@ -1,11 +1,6 @@
-import { FunctionComponent } from "react";
+const Some = () => {
 
-interface SomeProps {
-    
-}
- 
-const Some: FunctionComponent<SomeProps> = () => {
-    return (<></>);
+    return <div></div>;
 }
  
 export default Some;
