@@ -4,15 +4,38 @@ interface Getter<T> {
     (): Promise<T>,
 }
 
-interface GetterOptions {}
+interface UseGetOptions {
+    isList?: boolean,
+    populate?: boolean,
+}
 
-export function useGet<T>(url: string, options?: GetterOptions) : Getter<T> {
-
-    // const [data, setData] = useState<Getter<T>>();
+export function useGet<T>(url: string, options?: UseGetOptions) : Getter<T> {
 
     const get = async () : Promise<T> => {
-        const response = await fetch(url);
-        return response.body as T;
+
+        try {
+
+            const response = await fetch(`${url}${options?.populate ? "?populate=*" : ""}`)
+                .then(res => res.json())
+                .then(res => {
+                    if (options?.isList) {
+                        return res.data.map((item : any) => {
+                            let formatted = item.attributes
+                            formatted.id = item.id
+                            return formatted
+                        })
+                    } else {
+                        let formatted = res.attributes
+                        formatted.id = res.id
+                        return formatted
+                    }
+                })
+
+            return response as T;
+
+        } catch (E) {
+            throw E
+        }
     }
 
     return get;
