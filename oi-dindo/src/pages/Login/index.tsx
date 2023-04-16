@@ -1,12 +1,23 @@
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-import { Dispatch, FunctionComponent, SetStateAction } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
 
-import Img from "../../images/Login.png";
 interface LoginPageProps {
   setIsAuth: Dispatch<SetStateAction<boolean>>;
 }
 
 const LoginPage: FunctionComponent<LoginPageProps> = ({ setIsAuth }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+
   return (
     <Stack padding={5} spacing={3}>
       <Typography
@@ -18,7 +29,23 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ setIsAuth }) => {
         Login
       </Typography>
       <TextField label="E-mail" variant="outlined" />
-      <TextField label="Senha" type="password" />
+      <TextField
+        label="Senha"
+        type={showPassword ? "text" : "password"}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleClickShowPassword}
+              >
+                {showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+      />
       <Box display="flex" justifyContent="space-between">
         <Button
           sx={{
