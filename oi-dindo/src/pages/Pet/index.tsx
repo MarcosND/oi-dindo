@@ -12,7 +12,6 @@ interface PetPageProps {
   
 const PetPage: FunctionComponent<PetPageProps> = () => {
 
-    const trigger = useScrollTrigger({ threshold: 0, disableHysteresis: true });
     const scrollRef = useRef<HTMLDivElement>(null);
     const [scrollOffset, setScrollOffset] = useState(0);
 
