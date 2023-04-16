@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface Getter<T> {
     (): Promise<T>,
 }
@@ -25,8 +23,8 @@ export function useGet<T>(url: string, options?: UseGetOptions) : Getter<T> {
                             return formatted
                         })
                     } else {
-                        let formatted = res.attributes
-                        formatted.id = res.id
+                        let formatted = res.data.attributes
+                        formatted.id = res.data.id
                         return formatted
                     }
                 })
