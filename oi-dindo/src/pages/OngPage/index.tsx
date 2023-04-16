@@ -13,6 +13,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PhoneIcon from "@mui/icons-material/Phone";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import avatar from "../../images/Alfredo.png";
 
 interface OngPageProps {}
 
@@ -32,7 +33,11 @@ const OngPage: FC<OngPageProps> = () => {
 
   return (
     <Stack spacing={2} paddingX={5} marginBottom={10}>
-      <header>Header com foto</header>
+      <header><Avatar  
+            src={avatar} 
+            variant="square"
+            sx={{ width: '90vw', height: '120vw' }}
+            /></header>
       <Box display="flex" justifyContent="space-between">
         <Typography
           variant="h5"
