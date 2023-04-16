@@ -34,26 +34,25 @@ const OngPage: FC<OngPageProps> = () => {
   };
 
   const scrollRef = useRef<HTMLDivElement>(null);
-    const [scrollOffset, setScrollOffset] = useState(0);
+  const [scrollOffset, setScrollOffset] = useState(0);
 
-    useEffect(() => {
-        const handleScroll = () => {
-          setScrollOffset(window.pageYOffset);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-          window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollOffset(window.pageYOffset);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div ref={scrollRef}>
-      <BannerImage src={avatar}/>
+      <BannerImage src={avatar} />
 
       <Container>
         <Card>
           <Stack spacing={2} paddingX={5} marginBottom={10}>
-            
             <Box display="flex" justifyContent="space-between">
               <Typography
                 variant="h5"
@@ -72,8 +71,9 @@ const OngPage: FC<OngPageProps> = () => {
               borderRadius={1}
             >
               <Typography>
-                Somos um grupo de pessoas apaixonadas pelos animais e dedicamos nossas
-                vidas para ajudar aqueles que estão perdidos ou abandonados.
+                Somos um grupo de pessoas apaixonadas pelos animais e dedicamos
+                nossas vidas para ajudar aqueles que estão perdidos ou
+                abandonados.
               </Typography>
             </Box>
             <Box>
@@ -82,7 +82,11 @@ const OngPage: FC<OngPageProps> = () => {
               <LinearProgress
                 value={75}
                 variant="determinate"
-                sx={{ height: 24, border: "1px solid #4881D6", borderRadius: "4px" }}
+                sx={{
+                  height: 24,
+                  border: "1px solid #4881D6",
+                  borderRadius: "4px",
+                }}
               />
             </Box>
             <Box>
@@ -118,7 +122,6 @@ const OngPage: FC<OngPageProps> = () => {
           </Stack>
         </Card>
       </Container>
-      
     </div>
   );
 };
