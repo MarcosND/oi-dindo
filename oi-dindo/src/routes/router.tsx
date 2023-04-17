@@ -24,12 +24,12 @@ function Router() {
     { label: "Seus Pets", value: "pet", icon: PetIcon },
   ];
 
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("auth"));
 
   return (
     <BrowserRouter>
       <Routes>
-        {isAuth ? (
+        {isAuth === "true" ? (
           <Route path="/" element={<Navbar pages={navigatablePages} />}>
             <Route index element={<Home />} />
             <Route path="ong" element={<OngPage />} />

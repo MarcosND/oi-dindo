@@ -6,120 +6,159 @@ import {
   Card,
   Grid,
   IconButton,
-  Container,
+  Avatar,
+  CardMedia,
+  CardActionArea,
 } from "@mui/material";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC } from "react";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PhoneIcon from "@mui/icons-material/Phone";
 import VerifiedIcon from "@mui/icons-material/Verified";
-import avatar from "../../images/Alfredo.png";
-import BannerImage from "../../components/BannerImage";
+
+import OngBanner from "../../images/ong_banner.png";
+import OngImg from "../../images/ong_image.png";
+
+import Luke from "../../images/Luke 01.svg";
+import Nina from "../../images/Nina.svg";
+import Mel from "../../images/Mel.svg";
+import Caramela from "../../images/Caramela.svg";
 
 interface OngPageProps {}
 
 const OngPage: FC<OngPageProps> = () => {
-  const PetCard = () => {
+  const PetCard = (pic: string, name: string) => {
     return (
       <Grid item xs={6}>
-        <Box display="flex" flexDirection="column" alignItems="center">
-          <Card sx={{ borderRadius: 4, height: 150, width: "100%" }}>
-            Foto aqui
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          borderRadius={1}
+        >
+          <Card sx={{ width: "100%" }}>
+            <CardActionArea>
+              <CardMedia component="img" image={pic} />
+            </CardActionArea>
           </Card>
-          <Typography>Nina</Typography>
+          <Typography marginTop="3px">{name}</Typography>
         </Box>
       </Grid>
     );
   };
 
-  const scrollRef = useRef<HTMLDivElement>(null);
-    const [scrollOffset, setScrollOffset] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => {
-          setScrollOffset(window.pageYOffset);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-          window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
-
   return (
-    <div ref={scrollRef}>
-      <BannerImage src={avatar}/>
-
-      <Container>
-        <Card>
-          <Stack spacing={2} paddingX={5} marginBottom={10}>
-            
-            <Box display="flex" justifyContent="space-between">
-              <Typography
-                variant="h5"
-                fontWeight="500"
-                sx={{ filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))" }}
-              >
-                Cantinho da Filó
-              </Typography>
-              <VerifiedIcon />
-            </Box>
-            <Box
-              display="flex"
-              alignItems="center"
-              padding={2}
-              border="1px solid #4881D6"
-              borderRadius={1}
+    <>
+      <img
+        src={OngBanner}
+        alt="ong banner"
+        style={{
+          width: "103%",
+          height: "30%",
+          objectFit: "cover",
+          position: "absolute",
+          zIndex: -1,
+          transform: "translate(-5%, -5%)",
+        }}
+      />
+      <Stack spacing={2} paddingX={5} marginY={18}>
+        <Avatar src={OngImg} sx={{ width: 90, height: 90 }} />
+        <Box display="flex" justifyContent="space-between">
+          <Typography
+            variant="h5"
+            fontWeight="600"
+            sx={{ filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))" }}
+          >
+            Cantinho da Filó
+          </Typography>
+          <VerifiedIcon />
+        </Box>
+        <Box
+          display="flex"
+          alignItems="center"
+          padding={2}
+          border="1px solid #4881D6"
+          borderRadius={1}
+        >
+          <Typography>
+            Somos um grupo de pessoas apaixonadas pelos animais e dedicamos
+            nossas vidas para ajudar aqueles que estão perdidos ou abandonados.
+          </Typography>
+        </Box>
+        <Box>
+          <Typography variant="h6">Meta de Arrecadação</Typography>
+          <Typography variant="body2">R$ 75,00 / R$ 100,00</Typography>
+          <LinearProgress
+            value={75}
+            variant="determinate"
+            sx={{
+              height: 24,
+              border: "1px solid #4881D6",
+              borderRadius: "4px",
+            }}
+          />
+        </Box>
+        <Box>
+          <Typography variant="h6">Nossos Pets</Typography>
+          <Grid container spacing={2}>
+            {PetCard(Nina, "Nina")}
+            {PetCard(Luke, "Luke")}
+            {PetCard(Mel, "Mel")}
+            {PetCard(Caramela, "Caramela")}
+          </Grid>
+        </Box>
+        <Box>
+          <Typography variant="h6">Nossas Redes</Typography>
+          <Box display="flex" justifyContent="space-between">
+            <IconButton
+              sx={{
+                paddingBottom: 1.5,
+                color: "white",
+                backgroundColor: "#4881D6",
+                height: 56,
+                width: 56,
+              }}
             >
-              <Typography>
-                Somos um grupo de pessoas apaixonadas pelos animais e dedicamos nossas
-                vidas para ajudar aqueles que estão perdidos ou abandonados.
-              </Typography>
-            </Box>
-            <Box>
-              <Typography variant="h6">Meta de Arrecadação</Typography>
-              <Typography variant="body2">R$ 75,00 / R$ 100,00</Typography>
-              <LinearProgress
-                value={75}
-                variant="determinate"
-                sx={{ height: 24, border: "1px solid #4881D6", borderRadius: "4px" }}
+              @
+            </IconButton>
+            <IconButton
+              sx={{ backgroundColor: "#4881D6", height: 56, width: 56 }}
+            >
+              <FacebookIcon
+                style={{
+                  color: "white",
+                }}
               />
-            </Box>
-            <Box>
-              <Typography variant="h6">Nossos Pets</Typography>
-              <Grid container spacing={2}>
-                {PetCard()}
-                {PetCard()}
-                {PetCard()}
-                {PetCard()}
-              </Grid>
-            </Box>
-            <Box>
-              <Typography variant="h6">Nossas Redes</Typography>
-              <Box display="flex" justifyContent="space-between">
-                <IconButton>@</IconButton>
-                <IconButton>
-                  <FacebookIcon />
-                </IconButton>
-                <IconButton>
-                  <InstagramIcon />
-                </IconButton>
-                <IconButton>
-                  <PhoneIcon />
-                </IconButton>
-              </Box>
-            </Box>
-            <Box marginBottom={3}>
-              <Typography variant="h6">Onde nos encontrar</Typography>
-              <Typography>
-                Rua Juarez Carvalho, 470, Imbiribeira, Recife - PE
-              </Typography>
-            </Box>
-          </Stack>
-        </Card>
-      </Container>
-      
-    </div>
+            </IconButton>
+            <IconButton
+              sx={{ backgroundColor: "#4881D6", height: 56, width: 56 }}
+            >
+              <InstagramIcon
+                style={{
+                  color: "white",
+                }}
+              />
+            </IconButton>
+            <IconButton
+              sx={{ backgroundColor: "#4881D6", height: 56, width: 56 }}
+            >
+              <PhoneIcon
+                style={{
+                  color: "white",
+                }}
+              />
+            </IconButton>
+          </Box>
+        </Box>
+        <Box marginBottom={3}>
+          <Typography variant="h6">Onde nos encontrar</Typography>
+          <Typography>
+            Rua Juarez Carvalho, 470, Imbiribeira, Recife - PE
+          </Typography>
+        </Box>
+      </Stack>
+    </>
   );
 };
 
