@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
 
+import loginImg from "../../images/Login.svg";
+
 interface LoginPageProps {
   setIsAuth: Dispatch<SetStateAction<string | null>>;
 }
@@ -19,7 +21,19 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ setIsAuth }) => {
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
   return (
-    <Box width="100%">
+    <>
+      <img
+        src={loginImg}
+        alt="footprint"
+        style={{
+          width: "103%",
+          objectFit: "cover",
+          position: "absolute",
+          top: 30,
+          zIndex: -1,
+          transform: "translate(-5%, -5%)",
+        }}
+      />
       <Stack padding={5} spacing={3}>
         <Typography
           variant="h4"
@@ -83,7 +97,7 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ setIsAuth }) => {
           Entrar
         </Button>
       </Stack>
-    </Box>
+    </>
   );
 };
 
