@@ -54,12 +54,11 @@ const OngPage: FC<OngPageProps> = () => {
         src={OngBanner}
         alt="ong banner"
         style={{
-          width: "103%",
+          width: "100%",
           height: "30%",
           objectFit: "cover",
           position: "absolute",
           zIndex: -1,
-          transform: "translate(-5%, -5%)",
         }}
       />
       <Stack spacing={2} paddingX={5} marginY={18}>
