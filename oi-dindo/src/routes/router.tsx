@@ -10,9 +10,11 @@ import {
   Home as HomeIcon,
   AccountBalance as OngIcon,
   Pets as PetIcon,
+  Person2 as PersonIcon,
 } from "@mui/icons-material";
 import { useState } from "react";
 import ApadrinhamentoPage from "../pages/Apadrinhamento";
+import Profile from "../pages/Profile";
 
 function Router() {
   const navigatablePages: {
@@ -23,6 +25,7 @@ function Router() {
     { label: "Início", value: "/", icon: HomeIcon },
     { label: "ONGs", value: "ong", icon: OngIcon },
     { label: "Seus Pets", value: "pet", icon: PetIcon },
+    { label: "Perfil", value: "profile", icon: PersonIcon },
   ];
 
   const [isAuth, setIsAuth] = useState(localStorage.getItem("auth"));
@@ -36,6 +39,7 @@ function Router() {
             <Route path="ong" element={<OngPage />} />
             <Route path="pet" element={<PetPage />} />
             <Route path="apadrinhamento" element={<ApadrinhamentoPage />} />
+            <Route path="profile" element={<Profile setIsAuth={setIsAuth} />} />
           </Route>
         ) : (
           <Route index element={<LoginPage setIsAuth={setIsAuth} />} />

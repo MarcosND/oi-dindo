@@ -1,6 +1,6 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
-  Box,
+  //  Box,
   Button,
   IconButton,
   InputAdornment,
@@ -26,12 +26,9 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ setIsAuth }) => {
         src={loginImg}
         alt="footprint"
         style={{
-          width: "103%",
-          objectFit: "cover",
+          width: "100%",
           position: "absolute",
-          top: 30,
           zIndex: -1,
-          transform: "translate(-5%, -5%)",
         }}
       />
       <Stack padding={5} spacing={3}>
@@ -65,22 +62,28 @@ const LoginPage: FunctionComponent<LoginPageProps> = ({ setIsAuth }) => {
             ),
           }}
         />
-        <Box display="flex" justifyContent="space-between">
+        {/* <Box display="flex" justifyContent="space-between">
           <Button
             sx={{
               textTransform: "none",
               color: "black",
               fontWeight: "bold",
+              fontSize: "13px",
             }}
           >
             Não possuo uma conta
           </Button>
           <Button
-            sx={{ textTransform: "none", color: "grey", fontStyle: "italic" }}
+            sx={{
+              textTransform: "none",
+              color: "grey",
+              fontStyle: "italic",
+              fontSize: "12px",
+            }}
           >
             Esqueceu a senha?
           </Button>
-        </Box>
+        </Box> */}
         <Button
           onClick={() => {
             localStorage.setItem("auth", "true");
