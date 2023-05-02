@@ -12,6 +12,7 @@ import {
   Pets as PetIcon,
 } from "@mui/icons-material";
 import { useState } from "react";
+import ApadrinhamentoPage from "../pages/Apadrinhamento";
 
 function Router() {
   const navigatablePages: {
@@ -34,6 +35,7 @@ function Router() {
             <Route index element={<Home />} />
             <Route path="ong" element={<OngPage />} />
             <Route path="pet" element={<PetPage />} />
+            <Route path="apadrinhamento" element={<ApadrinhamentoPage />} />
           </Route>
         ) : (
           <Route index element={<LoginPage setIsAuth={setIsAuth} />} />

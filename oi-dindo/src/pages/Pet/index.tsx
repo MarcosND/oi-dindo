@@ -5,6 +5,7 @@ import avatar from "../../images/Alfredo.png"
 import BannerImage from "../../components/BannerImage";
 import Header from "./components/header";
 import theme from "../../global/theme";
+import { useNavigate } from "react-router-dom";
 
 interface PetPageProps {
     
@@ -14,6 +15,7 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
 
     const scrollRef = useRef<HTMLDivElement>(null);
     const [scrollOffset, setScrollOffset] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -32,7 +34,20 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
 
             <Container>
                 <Header />
-                <Card sx={{borderTopLeftRadius: 36, borderTopRightRadius: 36, paddingY: 1}}>
+                <div style={{
+                        width: '101%',
+                        height: '110%',
+                        objectFit: 'cover',
+                        position: 'absolute',
+                        overflowX: 'hidden',
+                        overflowY: 'hidden',
+                        zIndex: -1,
+                        transform: 'translate(-6.5%, 0%)',
+                        borderRadius: '36px 36px 0px 0px',
+                        boxShadow: '10px 5px 5px black',
+                        background: "white",
+                    }} />
+                <Card elevation={0} sx={{borderTopLeftRadius: 36, borderTopRightRadius: 36, paddingY: 1}}>
                     <CardContent>
                         <Stack direction="column" spacing={2} sx={{padding: "16px", border: "1px solid blue", borderRadius: 6}}>
 
@@ -40,6 +55,7 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
                                 <Button 
                                     sx={{borderRadius:2, minHeight: 40, margin:0}} 
                                     variant="contained"
+                                    onClick={() => navigate('/apadrinhamento')}
                                 >
                                     Apadrinhar
                                 </Button>
@@ -87,7 +103,10 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
                             />
                             <Button 
                                 sx={{borderRadius:2}} 
-                                variant="contained">Apadrinhar
+                                variant="contained"
+                                onClick={() => navigate('/apadrinhamento')}
+                            >
+                                Apadrinhar
                             </Button>
                         </Stack>
                     </CardActions>

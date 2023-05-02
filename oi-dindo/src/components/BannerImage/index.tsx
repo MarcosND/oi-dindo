@@ -65,9 +65,7 @@ const BannerImage: FunctionComponent<BannerImageProps> = ({src, distance=0}) => 
             transform: 'translate(-5%, -5%)',
             scale: `${scale}`,
             background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 95%)",
-        }}>
-
-        </div>
+        }} />
     </>;
 }
  
