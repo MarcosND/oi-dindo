@@ -24,10 +24,12 @@ import Luke from "../../images/Luke 01.svg";
 import Nina from "../../images/Nina.svg";
 import Mel from "../../images/Mel.svg";
 import Caramela from "../../images/Caramela.svg";
+import { useNavigate } from "react-router-dom";
 
 interface OngPageProps {}
 
 const OngPage: FC<OngPageProps> = () => {
+  const navigate = useNavigate();
   const PetCard = (pic: string, name: string) => {
     return (
       <Grid item xs={6}>
@@ -38,7 +40,7 @@ const OngPage: FC<OngPageProps> = () => {
           borderRadius={1}
         >
           <Card sx={{ width: "100%" }}>
-            <CardActionArea>
+            <CardActionArea onClick={() => navigate("pet")}>
               <CardMedia component="img" image={pic} />
             </CardActionArea>
           </Card>
@@ -117,12 +119,20 @@ const OngPage: FC<OngPageProps> = () => {
                 backgroundColor: "#4881D6",
                 height: 56,
                 width: 56,
+                "&:hover": { backgroundColor: "#618fd4" },
               }}
+              onClick={() => window.open("http://www.gmail.com")}
             >
               @
             </IconButton>
             <IconButton
-              sx={{ backgroundColor: "#4881D6", height: 56, width: 56 }}
+              sx={{
+                backgroundColor: "#4881D6",
+                height: 56,
+                width: 56,
+                "&:hover": { backgroundColor: "#618fd4" },
+              }}
+              onClick={() => window.open("http://www.facebook.com")}
             >
               <FacebookIcon
                 style={{
@@ -131,7 +141,13 @@ const OngPage: FC<OngPageProps> = () => {
               />
             </IconButton>
             <IconButton
-              sx={{ backgroundColor: "#4881D6", height: 56, width: 56 }}
+              sx={{
+                backgroundColor: "#4881D6",
+                height: 56,
+                width: 56,
+                "&:hover": { backgroundColor: "#618fd4" },
+              }}
+              onClick={() => window.open("http://www.instagram.com")}
             >
               <InstagramIcon
                 style={{
@@ -140,7 +156,12 @@ const OngPage: FC<OngPageProps> = () => {
               />
             </IconButton>
             <IconButton
-              sx={{ backgroundColor: "#4881D6", height: 56, width: 56 }}
+              sx={{
+                backgroundColor: "#4881D6",
+                height: 56,
+                width: 56,
+                "&:hover": { backgroundColor: "#618fd4" },
+              }}
             >
               <PhoneIcon
                 style={{

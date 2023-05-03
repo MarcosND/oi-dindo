@@ -29,7 +29,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({ pages }) => {
 
   return (
     <Box>
-      <Box sx={{ overflowY: "scroll", overflowX: "hidden"  }}>
+      <Box sx={{ overflowY: "scroll", overflowX: "hidden" }}>
         <Outlet />
       </Box>
 
@@ -47,11 +47,12 @@ const Navbar: FunctionComponent<NavbarProps> = ({ pages }) => {
           navigate(newValue);
         }}
       >
-        {pages.map((page) => (
+        {pages.map((page, index) => (
           <BottomNavigationAction
             label={page.label}
             value={page.value}
             icon={<page.icon />}
+            key={index}
           />
         ))}
       </BottomNavigation>
