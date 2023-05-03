@@ -12,8 +12,8 @@ const StatCard: FunctionComponent<StatCardProps> = () => {
 
     return (
         <Stack direction="column">
-            <Card sx={{borderRadius: 2, paddingX: 2, paddingY: 0.7, width: 80}}>
-                <Stack direction="row" justifyContent={"space-between"} alignItems={"center"}>
+            <Card sx={{borderRadius: 2, paddingX: 2, paddingY: 0.7}}>
+                <Stack direction="row" spacing={1} alignItems={"center"}>
                     <Typography variant="subtitle1" fontWeight={"semi-bold"}>{"Peso"}</Typography>
                     <FitnessCenterIcon color="secondary"/>
                 </Stack>
@@ -25,7 +25,7 @@ const StatCard: FunctionComponent<StatCardProps> = () => {
                     borderTopLeftRadius: 0, 
                     borderTopRightRadius: 0, 
                     padding: 1, 
-                    width: 50, 
+                    width: '80%', 
                     paddingTop: 4,
                     marginTop: -3,
                     zIndex: -1,

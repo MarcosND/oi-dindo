@@ -13,7 +13,9 @@ import {
   Person2 as PersonIcon,
 } from "@mui/icons-material";
 import { useState } from "react";
+import ApadrinhamentoPage from "../pages/Apadrinhamento";
 import Profile from "../pages/Profile";
+import MimosPage from "../pages/Mimos";
 
 function Router() {
   const navigatablePages: {
@@ -24,6 +26,7 @@ function Router() {
     { label: "Início", value: "/", icon: HomeIcon },
     { label: "ONGs", value: "ong", icon: OngIcon },
     { label: "Seus Pets", value: "pet", icon: PetIcon },
+    { label: "Mimos", value: "mimos", icon: PetIcon },
     { label: "Perfil", value: "profile", icon: PersonIcon },
   ];
 
@@ -36,7 +39,9 @@ function Router() {
           <Route path="/" element={<Navbar pages={navigatablePages} />}>
             <Route index element={<Home />} />
             <Route path="ong" element={<OngPage />} />
+            <Route path="mimos" element={<MimosPage />} />
             <Route path="pet" element={<PetPage />} />
+            <Route path="apadrinhamento" element={<ApadrinhamentoPage />} />
             <Route path="profile" element={<Profile setIsAuth={setIsAuth} />} />
           </Route>
         ) : (

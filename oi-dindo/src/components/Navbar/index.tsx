@@ -29,7 +29,7 @@ const Navbar: FunctionComponent<NavbarProps> = ({ pages }) => {
 
   return (
     <Box>
-      <Box sx={{ overflowY: "scroll", overflowX: "hidden" }}>
+      <Box sx={{ overflowY: "scroll", overflowX: "hidden"  }}>
         <Outlet />
       </Box>
 
