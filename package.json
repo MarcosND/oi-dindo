@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "react-confetti": "^6.1.0",
-    "react-share": "^4.4.1"
-  },
-  "devDependencies": {
-    "react-svg-loader": "^3.0.3"
-  }
-}
