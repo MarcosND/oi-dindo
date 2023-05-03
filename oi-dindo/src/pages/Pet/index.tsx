@@ -5,7 +5,7 @@ import avatar from "../../images/Alfredo.png"
 import BannerImage from "../../components/BannerImage";
 import Header from "./components/header";
 import theme from "../../global/theme";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface PetPageProps {
     
@@ -13,7 +13,15 @@ interface PetPageProps {
   
 const PetPage: FunctionComponent<PetPageProps> = () => {
 
-    const scrollRef = useRef<HTMLDivElement>(null);
+    const state = useLocation().state
+    const [progress, setProgress] = useState(50)
+
+    useEffect(() => {
+        if (state?.progress && state.progress !== progress) {
+            setProgress(state.progress)
+        }
+    }, [state, progress])
+    
     const [scrollOffset, setScrollOffset] = useState(0);
     const navigate = useNavigate();
 
@@ -29,20 +37,20 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
 
 
     return (
-        <div ref={scrollRef}>
+        <Box>
             <BannerImage src={avatar} distance={scrollOffset}/>
 
             <Container>
                 <Header />
                 <div style={{
-                        width: '101%',
+                        width: '99%',
                         height: '110%',
                         objectFit: 'cover',
                         position: 'absolute',
                         overflowX: 'hidden',
                         overflowY: 'hidden',
                         zIndex: -1,
-                        transform: 'translate(-6.5%, 0%)',
+                        transform: 'translate(-4%, 0%)',
                         borderRadius: '36px 36px 0px 0px',
                         boxShadow: '10px 5px 5px black',
                         background: "white",
@@ -68,11 +76,14 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
                                 <Typography variant="body2">
                                     X% arrecadado
                                 </Typography>
-                                <LinearProgress variant="determinate" color="primary" value={50} 
+                                <LinearProgress variant="determinate" color="primary" value={progress} 
                                     sx={{
                                         height: 24, 
-                                        border: 2, 
+                                        border: 2,
                                         borderColor: theme.palette.primary.dark,
+                                    }}
+                                    style={{
+                                        borderRadius: 12,
                                     }}
                                 />
                             </Stack>
@@ -163,7 +174,7 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
                     
                 </Card>
             </Container>
-        </div>
+        </Box>
     );
 }
  

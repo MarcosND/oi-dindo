@@ -2,6 +2,25 @@ import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          color: '#000',
+          "&.Mui-selected": {
+            color: '#D67224',
+          },
+        },
+      },
+    },
+    MuiTabs: {
+      defaultProps: {
+        TabIndicatorProps: {
+          style: {
+            backgroundColor: '#D67224',
+          },
+        },
+      },
+    },
     MuiTextField: {
       styleOverrides: {
         root: {

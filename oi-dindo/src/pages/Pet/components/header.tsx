@@ -1,8 +1,10 @@
 import { Box, Button, Card, Container, IconButton, Stack, Typography } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import StatCard from "./stats";
+import { useNavigate } from "react-router-dom";
+import { FavoriteOutlined } from "@mui/icons-material";
 
 interface HeaderProps {
     
@@ -10,18 +12,35 @@ interface HeaderProps {
   
 const Header: FunctionComponent<HeaderProps> = () => {
 
+    const navigate = useNavigate();
+
+    const [favorite, setFavorite] = useState<boolean>(false)
+
     return (
         <Container sx={{width: "100%", marginTop: 2}}>
             <Stack direction="column" justifyContent="space-between">
 
                 {/* Top buttons */}
                 <Stack direction="row" justifyContent="space-between">
-                    <IconButton sx={{backgroundColor: "white"}}>
-                        <ArrowBackIcon color="primary" />
-                    </IconButton>
-                    <IconButton sx={{backgroundColor: "white"}}>
-                        <FavoriteBorderIcon color="secondary" />
-                    </IconButton>
+                    <Box sx={{backgroundColor: 'white', borderRadius: '100%'}}>
+                        <IconButton
+                        onClick={() => {navigate(-1)}}
+                        >
+                            <ArrowBackIcon color="primary" />
+                        </IconButton>
+                    </Box>
+                    <Box sx={{backgroundColor: 'white', borderRadius: '100%'}}>
+                        <IconButton
+                        onClick={() => {
+                            setFavorite(!favorite)
+                        }}
+                        >
+                            {favorite
+                            ? <FavoriteOutlined color='secondary' />
+                            : <FavoriteBorderIcon color="secondary" />
+                            }
+                        </IconButton>
+                    </Box>
                 </Stack>
 
                 {/* Bottom info */}

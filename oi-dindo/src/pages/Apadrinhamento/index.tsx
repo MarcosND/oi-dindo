@@ -2,9 +2,11 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   Box,
   Button,
+  CircularProgress,
   FormControlLabel,
   IconButton,
   InputAdornment,
+  LinearProgress,
   Modal,
   Radio,
   RadioGroup,
@@ -13,26 +15,33 @@ import {
   Typography,
 } from "@mui/material";
 import { Dispatch, FunctionComponent, SetStateAction, useState } from "react";
-import animatedPetJSON from './animatedPet.json' 
+import animatedPetJSON from '../../images/animatedPet.json';
+import ReactConfetti from 'react-confetti';
 
 import Footprint from "../../images/Login.svg";
 import QRCode from "../../images/qrcode.jpeg";
 import Lottie from "react-lottie-player";
+import { useNavigate } from "react-router-dom";
 
 interface ApadrinhamentoPageProps {
 
 }
 
 const ApadrinhamentoPage: FunctionComponent<ApadrinhamentoPageProps> = () => {
+
+  const navigate = useNavigate();
+
+  const [amount, setAmount] = useState<string>('');
+
   const [openConfirm, setOpenConfirm] = useState(false);
   const [openDone, setOpenDone] = useState(false);
 
   const modalConfirmStyle = {
     position: 'absolute' as 'absolute',
-    top: '50%',
+    top: '45%',
     left: '50%',
     transform: 'translate(-50%, -45%)',
-    width: '50%',
+    width: '80%',
     bgcolor: 'background.paper',
     borderRadius: '12px',
     boxShadow: 24,
@@ -44,11 +53,12 @@ const ApadrinhamentoPage: FunctionComponent<ApadrinhamentoPageProps> = () => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -45%)',
-    width: '50%',
+    width: '80%',
     bgcolor: 'background.paper',
-    borderRadius: '12px 0 12px 12px',
+    borderRadius: '0 0 12px 12px',
     boxShadow: 24,
-    py: 6,
+    pt: 8,
+    pb: 4,
     px: 4,
   };
   const modalTopBoxStyle = {
@@ -56,9 +66,9 @@ const ApadrinhamentoPage: FunctionComponent<ApadrinhamentoPageProps> = () => {
     position: 'absolute' as 'absolute',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -155%)',
-    height: '10%',
-    width: '50%',
+    transform: 'translate(-50%, -140%)',
+    height: '20%',
+    width: '80%',
     bgcolor: '#8CC7F0',
     borderRadius: '12px 12px 36px 0px',
     p: 4,
@@ -85,7 +95,7 @@ const ApadrinhamentoPage: FunctionComponent<ApadrinhamentoPageProps> = () => {
     >
       <Box sx={modalConfirmStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Basta realizar o pagamento!
+            Agora so falta você realizar o pagamento dos R${amount},00 reais!
           </Typography>
           <img 
             src={QRCode}
@@ -96,20 +106,27 @@ const ApadrinhamentoPage: FunctionComponent<ApadrinhamentoPageProps> = () => {
               zIndex: -1,
             }}
           />
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Agradecemos a sua contribuição!
-          </Typography>
+          <Stack direction={"column"}>
+            <LinearProgress />
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Esperamos a sua contribuição!
+            </Typography>
+          </Stack>
         </Box>
     </Modal>
 
     {/* Done modal */}
     <Modal
       open={openDone}
-      onClose={() => setOpenDone(false)}
+      onClose={() => {
+        setOpenDone(false);
+        navigate('/pet', {state: {progress: 80}})
+      }}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
       <Stack>
+        <ReactConfetti width={800} style={{zIndex: 10}} />
         <Box
           sx={modalTopBoxStyle}
         >
@@ -157,7 +174,7 @@ const ApadrinhamentoPage: FunctionComponent<ApadrinhamentoPageProps> = () => {
         <Box style={{marginBottom: '45px'}}>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
+            defaultValue="montlhy"
             name="radio-buttons-group"
             style={{
               marginBottom: '50px'
@@ -168,12 +185,13 @@ const ApadrinhamentoPage: FunctionComponent<ApadrinhamentoPageProps> = () => {
           </RadioGroup>
 
           <Typography>Valor da contribuição</Typography>
-          <TextField variant="outlined" placeholder="Digite ou escolha um valor"/>
+          <TextField value={amount} onChange={(e) => {setAmount(e.target.value)}} variant="outlined" placeholder="Digite um valor"/>
           <Typography fontSize={12}>Você receberá mimos a cada 15 dias</Typography>
         </Box>
 
         <Typography>Ao clicar em Concluir, um código pix será gerado para que o pagamento seja realizado</Typography>
         <Button
+          disabled={amount.length <= 0}
           onClick={() => setOpenConfirm(true)}
           variant="contained"
           sx={{

@@ -53,6 +53,7 @@ const BannerImage: FunctionComponent<BannerImageProps> = ({src, distance=0}) => 
                 filter: `blur(${dim}px)`
             }}
             src={src}
+            alt="banner"
         />
         <div style={{
             width: '105%',
