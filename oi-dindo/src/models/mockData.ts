@@ -10,6 +10,16 @@ import MarleyLogo from "../images/MarleyLogo.jpg";
 import MundoPeludo from "../images/Peludo.png";
 import MundoLuna from "../images/Luna.png";
 
+import AnjosLogo from "../images/Anjos.png";
+import AnjosBanner from "../images/AnjosBanner.png";
+import AnjosCacau from "../images/Cacau.png";
+import AnjosCanela from "../images/Canela.png";
+
+import HelpLogo from "../images/PetHelpLogo.png";
+import HelpBanner from "../images/PetHelpBanner.png";
+import HelpNina from "../images/Nina.png";
+import HelpPipoca from "../images/Pipoca.png";
+
 export const Ongs: Ong[] = [
   {
     id: 1,
@@ -81,7 +91,7 @@ export const Ongs: Ong[] = [
     facebook: "",
     instagram: "https://www.instagram.com/mundo.domarley/",
     address:
-      "Av. Batalha do Tuiuti, Águas compridas, 1228 - Bloco A, Imbiribeira, Olinda - PE",
+      "Av. Batalha do Tuiuti, 1228 - Bloco A, Águas compridas, Olinda - PE",
     logo: MarleyLogo,
     banner: MundoBanner,
     current_goal: 1710.2,
@@ -137,6 +147,127 @@ export const Ongs: Ong[] = [
         valueEarned: 153.18,
         photo: MundoLuna,
         sex: "Feminino",
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "Anjos do Poço",
+    description:
+      "A Anjos do Poço atua na defesa dos animais (resgate, castração, exames, vermifugação, vacinas e adoção), oferecendo suporte a protetores credenciados e tutores em geral. Além disso, a ONG desenvolve ações de conscientização voltadas para a defesa do meio ambiente.",
+    phone: "(81) 98103-5333",
+    email: "anjosdopoco@gmail.com",
+    facebook: "https://www.facebook.com/anjosdopocoperfil",
+    instagram: "https://www.instagram.com/anjosdopoco/",
+    address: "R. Virgílio de Oliveira, 255, Poço da Panela, Recife - PE",
+    logo: AnjosLogo,
+    banner: AnjosBanner,
+    current_goal: 901.2,
+    money_goal: 1232,
+    faq: [
+      {
+        question: "Quantos animais vocês estão abrigando?",
+        answer:
+          "No momento estamos abrigando 15 gatos, 24 cachorros e 1 papagaio.",
+      },
+      {
+        question: "Posso virar voluntário?",
+        answer:
+          "Sim! Qualquer pessoa está elegível para se voluntariar, nos siga no instagram para mais instruções.",
+      },
+      {
+        question: "Há quanto tempo a ONG funciona?",
+        answer: "Desde 2018.",
+      },
+    ],
+    pets: [
+      {
+        id: 31,
+        name: "Cacau",
+        weight: 2,
+        age: 2,
+        description: `Olá, meu nome é Cacau e sou uma gatinha muito especial! Fui abandonada nas ruas, mas isso não me impediu de manter minha personalidade carinhosa e brincalhona. Sou uma gatinha curiosa e adoro explorar tudo ao meu redor, mas o que mais gosto é de receber carinho e atenção das pessoas.
+        Apesar das dificuldades que já passei, mantenho meu coração cheio de amor e esperança de encontrar uma família que me adote e me dê um lar definitivo. Enquanto não encontro, que tal me dar uma chance e apadrinhar uma gatinha tão especial como eu?`,
+        totalValue: 187.6,
+        valueEarned: 60.9,
+        photo: AnjosCacau,
+        sex: "Feminino",
+      },
+
+      {
+        id: 32,
+        name: "Canela",
+        weight: 9,
+        age: 11,
+        description: `Meu nome é Canela, tenho pelo curto e em tons de marrom, cor de canela, o que me rendeu esse nome. Apesar de ter passado por muitas dificuldades na rua, eu sou uma cachorrinha muito carinhosa e afetuosa. 
+        Adoro ficar perto das pessoas, receber carinho na barriga e brincar de pegar a bolinha.
+        Sou uma cachorrinha muito sociável e adoro fazer novos amigos, tanto cães como humanos. Gosto de correr e brincar, mas também adoro tirar um cochilo no sol. Sou muito fiel e leal, e estou sempre disposta a proteger aqueles que amo.`,
+        totalValue: 308.9,
+        valueEarned: 134.19,
+        photo: AnjosCanela,
+        sex: "Feminino",
+      },
+    ],
+  },
+  {
+    id: 4,
+    name: "Pet Help",
+    description: `Somos uma ONG cujo objetivo principal é proporcionar uma vida digna à animais abandonados. Atuamos em Recife e região metropolitana. Resgatamos, recuperamos a saúde e o bem-estar do animal com base em protocolo médico traçado pelo nosso veterinário responsável.
+      Após garantia de que o animal está saudável (vermifugado, castrado e vacinado), damos início a sua campanha de adoção. Buscamos que cada um deles tenha o seu final feliz com amor, carinho e dignidade.`,
+    phone: "(81) 99251-1182",
+    email: "",
+    facebook: "https://www.facebook.com/profile.php?id=100064803275182",
+    instagram: "https://www.instagram.com/pethelprecife/",
+    address: "Av. Guararapes, 86, Santo Antônio, Recife - PE",
+    logo: HelpLogo,
+    banner: HelpBanner,
+    current_goal: 230.21,
+    money_goal: 1890,
+    faq: [
+      {
+        question: "Como posso me voluntariar?",
+        answer:
+          "A partir do nosso instagram é possível encontrar todas as informações.",
+      },
+      {
+        question: "Há quanto tempo a ONG funciona?",
+        answer: "Estamos em funcionamento desde 2011",
+      },
+      {
+        question:
+          "Vocês aceitam doações de alimentos e outros suprimentos para os animais?",
+        answer: "Sim, aceitamos qualquer tipo de ajuda.",
+      },
+      {
+        question: "Quantos animais vocês estão abrigando?",
+        answer: "Estamos abrigando atualmente 15 cachorros e 2 gatos.",
+      },
+    ],
+    pets: [
+      {
+        id: 41,
+        name: "Nina",
+        weight: 4,
+        age: 8,
+        description: `Meu nome é Nina, e eu sou uma gatinha de rua que foi abandonada. Eu sou um pouco tímida e assustada, por isso acabo sendo muito preguiçosa e fico sempre procurando um lugarzinho aconchegante e seguro para dormir.
+        Desde que fui abandonada, tenho tido dificuldades para sobreviver sozinha nas ruas. Estou aprendendo a confiar nas pessoas novamente e aos poucos estou me acostumando com a nova rotina.`,
+        totalValue: 238.1,
+        valueEarned: 201.0,
+        photo: HelpNina,
+        sex: "Feminino",
+      },
+
+      {
+        id: 42,
+        name: "Pipoca",
+        weight: 10,
+        age: 3,
+        description: `Meu nome é Pipoca e tenho uma carinha muito fofa, se eu posso dizer! Acho que tenho por volta de 1 anos, mas não tenho certeza, já que ninguém sabe minha história antes de eu ter sido encontrado abandonado na rua.
+        Gosto muito de brincar, correr, pular e, é claro, comer! Estou me acostumando com a nova rotina, aprendendo a fazer minhas necessidades no lugar certo e também a conviver com outros cachorrinhos.`,
+        totalValue: 238.9,
+        valueEarned: 210.87,
+        photo: HelpPipoca,
+        sex: "Masculino",
       },
     ],
   },
