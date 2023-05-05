@@ -1,17 +1,12 @@
 import React, { ChangeEvent, useState } from "react";
-import {
-  Box,
-  Container,
-  Typography,
-  Tab,
-  Tabs,
-  Stack,
-} from "@mui/material";
+import { Box, Container, Typography, Tab, Tabs, Stack } from "@mui/material";
 import { styled } from "@mui/system";
 import { ReactComponent as CustomCatIcon } from "../../images/CatIcon.svg";
 import { ReactComponent as CustomDogIcon } from "../../images/DogIcon.svg";
 import { ReactComponent as CustomPetIcon } from "../../images/PetIcon.svg";
 import PostCard from "./components/postCard";
+
+import Luna from "../../images/Luna.png";
 
 const ScrollableTabs = styled(Tabs)({
   overflowX: "auto",
@@ -27,11 +22,11 @@ const MimosPage = () => {
 
   return (
     <Container
-        sx={{
-            width: "100vw",
-            height: "100vh",
-            background: "linear-gradient(to bottom right, #8CC7F0, #FFFFFF 80%)",
-        }}
+      sx={{
+        width: "100vw",
+        height: "100vh",
+        background: "linear-gradient(to bottom right, #8CC7F0, #FFFFFF 80%)",
+      }}
     >
       <Box py={2}>
         <Typography variant="h4" align="left">
@@ -46,37 +41,62 @@ const MimosPage = () => {
           textColor="primary"
         >
           <Tab
-            label={<>
+            label={
+              <>
                 <CustomPetIcon />
                 Todos
-            </>}
+              </>
+            }
           />
           <Tab
-            label={<>
+            label={
+              <>
                 <CustomCatIcon />
                 Gato A
-            </>}
+              </>
+            }
           />
           <Tab
-            label={<>
+            label={
+              <>
                 <CustomDogIcon />
                 Dog A
-            </>}
+              </>
+            }
           />
           <Tab
-            label={<>
+            label={
+              <>
                 <CustomDogIcon />
                 Dog B
-            </>}
+              </>
+            }
           />
           {/* Add more tabs here */}
         </ScrollableTabs>
       </Box>
 
-      <Stack direction={"column"} spacing={3} height={"65%"} sx={{overflowY: "scroll"}}>
-        <PostCard />
-        <PostCard />
-        <PostCard />
+      <Stack
+        direction={"column"}
+        spacing={3}
+        height={"65%"}
+        sx={{ overflowY: "scroll" }}
+      >
+        <PostCard
+          image={Luna}
+          owner="Abrigo Mundo do Marley"
+          text="A luna está animada e passeando hoje!"
+        />
+        <PostCard
+          image={Luna}
+          owner="Abrigo Mundo do Marley"
+          text="A luna está animada e passeando hoje!"
+        />
+        <PostCard
+          image={Luna}
+          owner="Abrigo Mundo do Marley"
+          text="A luna está animada e passeando hoje!"
+        />
       </Stack>
     </Container>
   );

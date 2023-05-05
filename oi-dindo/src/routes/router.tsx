@@ -8,7 +8,6 @@ import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { SvgIconTypeMap } from "@mui/material";
 import {
   Home as HomeIcon,
-  AccountBalance as OngIcon,
   Pets as PetIcon,
   Person2 as PersonIcon,
 } from "@mui/icons-material";
@@ -24,7 +23,6 @@ function Router() {
     icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & { muiName: string };
   }[] = [
     { label: "Início", value: "/", icon: HomeIcon },
-    { label: "ONGs", value: "ong", icon: OngIcon },
     { label: "Mimos", value: "mimos", icon: PetIcon },
     { label: "Perfil", value: "profile", icon: PersonIcon },
   ];
@@ -37,9 +35,9 @@ function Router() {
         {isAuth === "true" ? (
           <Route path="/" element={<Navbar pages={navigatablePages} />}>
             <Route index element={<Home />} />
-            <Route path="ong" element={<OngPage />} />
+            <Route path="ong/:ongId" element={<OngPage />}></Route>
             <Route path="mimos" element={<MimosPage />} />
-            <Route path="ong/pet" element={<PetPage />} />
+            <Route path="ong/:ongId/pet/:petId" element={<PetPage />} />
             <Route path="apadrinhamento" element={<ApadrinhamentoPage />} />
             <Route path="profile" element={<Profile setIsAuth={setIsAuth} />} />
           </Route>

@@ -12,16 +12,22 @@ import {
 } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
 import { FunctionComponent, useEffect, useState } from "react";
-import avatar from "../../images/Alfredo.png";
 import BannerImage from "../../components/BannerImage";
 import Header from "./components/header";
 import theme from "../../global/theme";
-import Ong from "../../images/ong_image.png";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Ongs } from "../../models/mockData";
 
 interface PetPageProps {}
 
 const PetPage: FunctionComponent<PetPageProps> = () => {
+  const { petId, ongId } = useParams();
+  const ongData = Ongs.find((ong) => ong.id === Number(ongId));
+  const petData = ongData?.pets.find((pet) => pet.id === Number(petId));
+
+  const goalPercentage =
+    (Number(petData?.valueEarned) / Number(petData?.totalValue)) * 100;
+
   const state = useLocation().state;
   const [progress, setProgress] = useState(50);
 
@@ -46,10 +52,9 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
 
   return (
     <Box>
-      <BannerImage src={avatar} distance={scrollOffset} />
-
+      <BannerImage src={petData?.photo} distance={scrollOffset} />
       <Container>
-        <Header />
+        <Header pet={petData} />
         <div
           style={{
             width: "99%",
@@ -101,11 +106,13 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
               </Stack>
 
               <Stack direction="column">
-                <Typography variant="body2">X% arrecadado</Typography>
+                <Typography variant="body2">
+                  {goalPercentage.toFixed(0)}% arrecadado
+                </Typography>
                 <LinearProgress
                   variant="determinate"
                   color="primary"
-                  value={progress}
+                  value={goalPercentage}
                   sx={{
                     height: 24,
                     border: 2,
@@ -129,18 +136,20 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
             >
               Sobre o pet:
             </Typography>
-            <Typography variant="body2">
-              Sorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-              vulputate libero et velit interdum, ac aliquet odio mattis.
-            </Typography>
-            <Typography sx={{ paddingTop: "12px" }} variant="body1">
+            <Typography variant="body2">{petData?.description}</Typography>
+            {/* <Typography sx={{ paddingTop: "12px" }} variant="body1">
               #carinhoso #curioso #pelocurto #brincalhão #obediente #sociável
-            </Typography>
+            </Typography> */}
           </CardContent>
 
           <CardActions>
             <Stack direction="row" spacing={"11px"}>
-              <Avatar src={Ong} />
+              <Avatar
+                src={ongData?.logo}
+                onClick={() =>
+                  navigate(`../ong/${ongData?.id}`, { replace: true })
+                }
+              />
               <Button
                 sx={{ borderRadius: 2 }}
                 variant="contained"
@@ -150,165 +159,6 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
               </Button>
             </Stack>
           </CardActions>
-
-          <CardContent sx={{ marginBottom: 14 }}>
-            <Box
-              sx={{
-                padding: "16px",
-                border: "1px solid blue",
-                borderRadius: "14px",
-                width: "100vw",
-              }}
-            >
-              <Typography
-                sx={{ paddingBottom: "4px" }}
-                variant="h5"
-                component="div"
-              >
-                Perguntas
-              </Typography>
-
-              <Box sx={{ overflow: "auto", whiteSpace: "nowrap" }}>
-                <Stack direction="row" spacing={"11px"}>
-                  <Box
-                    sx={{
-                      backgroundColor: theme.palette.primary.light,
-                      display: "inline-block",
-                      minWidth: 230,
-                      whiteSpace: "normal",
-                    }}
-                  >
-                    <Typography
-                      color="white"
-                      sx={{ padding: "8px", textAlign: "left" }}
-                      variant="h6"
-                    >
-                      Pergunta
-                    </Typography>
-                    <Typography
-                      color="white"
-                      sx={{
-                        paddingLeft: "8px",
-                        paddingRight: "8px",
-                        paddingBottom: "8px",
-                        wordBreak: "normal",
-                        overflow: "hidden",
-                      }}
-                      variant="body1"
-                      align="left"
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nunc vulputate libero et velit interdum, ac aliquet odio
-                      mattis.
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      backgroundColor: theme.palette.primary.light,
-                      display: "inline-block",
-                      minWidth: 230,
-                      whiteSpace: "normal",
-                    }}
-                  >
-                    <Typography
-                      color="white"
-                      sx={{ padding: "8px", textAlign: "left" }}
-                      variant="h6"
-                    >
-                      Pergunta
-                    </Typography>
-                    <Typography
-                      color="white"
-                      sx={{
-                        paddingLeft: "8px",
-                        paddingRight: "8px",
-                        paddingBottom: "8px",
-                        wordBreak: "normal",
-                        overflow: "hidden",
-                      }}
-                      variant="body1"
-                      align="left"
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nunc vulputate libero et velit interdum, ac aliquet odio
-                      mattis.
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      backgroundColor: theme.palette.primary.light,
-                      display: "inline-block",
-                      minWidth: 230,
-                      whiteSpace: "normal",
-                    }}
-                  >
-                    <Typography
-                      color="white"
-                      sx={{ padding: "8px", textAlign: "left" }}
-                      variant="h6"
-                    >
-                      Pergunta
-                    </Typography>
-                    <Typography
-                      color="white"
-                      sx={{
-                        paddingLeft: "8px",
-                        paddingRight: "8px",
-                        paddingBottom: "8px",
-                        wordBreak: "normal",
-                        overflow: "hidden",
-                      }}
-                      variant="body1"
-                      align="left"
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nunc vulputate libero et velit interdum, ac aliquet odio
-                      mattis.
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      backgroundColor: theme.palette.primary.light,
-                      display: "inline-block",
-                      minWidth: 230,
-                      whiteSpace: "normal",
-                    }}
-                  >
-                    <Typography
-                      color="white"
-                      sx={{ padding: "8px", textAlign: "left" }}
-                      variant="h6"
-                    >
-                      Pergunta
-                    </Typography>
-                    <Typography
-                      color="white"
-                      sx={{
-                        paddingLeft: "8px",
-                        paddingRight: "8px",
-                        paddingBottom: "8px",
-                        wordBreak: "normal",
-                        overflow: "hidden",
-                      }}
-                      variant="body1"
-                      align="left"
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Nunc vulputate libero et velit interdum, ac aliquet odio
-                      mattis.
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      backgroundColor: "clear",
-                      display: "inline-block",
-                      minWidth: 100,
-                    }}
-                  ></Box>
-                </Stack>
-              </Box>
-            </Box>
-          </CardContent>
         </Card>
       </Container>
     </Box>

@@ -28,7 +28,6 @@ const Profile: FC<ProfileProps> = ({ setIsAuth }) => {
       <Typography variant="h4" fontWeight="bold" marginY={2}>
         Lucas Silva
       </Typography>
-      {/* TO DO: Colocar navegação para rotas certas quando tivermos aqui:  */}
       <Button
         sx={{
           display: "flex",
@@ -40,7 +39,7 @@ const Profile: FC<ProfileProps> = ({ setIsAuth }) => {
           boxSizing: "border-box",
           borderBottom: "1px solid #D67224",
         }}
-        onClick={() => navigate("/pet")}
+        onClick={() => navigate("/mimos")}
       >
         <Box display="flex" alignItems="center">
           <Favorite color="secondary" />

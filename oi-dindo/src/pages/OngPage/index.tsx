@@ -17,22 +17,58 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import PhoneIcon from "@mui/icons-material/Phone";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
-import OngBanner from "../../images/ong_banner.png";
-import OngImg from "../../images/ong_image.png";
-
-import Luke from "../../images/Luke 01.svg";
-import Nina from "../../images/Nina.svg";
-import Mel from "../../images/Mel.svg";
-import Caramela from "../../images/Caramela.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Ongs } from "../../models/mockData";
+import theme from "../../global/theme";
 
 interface OngPageProps {}
 
+const FaqCard = (question: string, answer: string) => {
+  return (
+    <Box
+      sx={{
+        backgroundColor: theme.palette.primary.light,
+        display: "inline-block",
+        minWidth: 280,
+        whiteSpace: "normal",
+      }}
+    >
+      <Typography
+        color="white"
+        sx={{ padding: "8px", textAlign: "left" }}
+        fontWeight="bold"
+      >
+        {question}
+      </Typography>
+      <Typography
+        color="white"
+        sx={{
+          paddingLeft: "8px",
+          paddingRight: "8px",
+          paddingBottom: "8px",
+          wordBreak: "normal",
+          overflow: "hidden",
+        }}
+        variant="body1"
+        align="left"
+      >
+        {answer}
+      </Typography>
+    </Box>
+  );
+};
+
 const OngPage: FC<OngPageProps> = () => {
+  const { ongId } = useParams();
+  const ongData = Ongs.find((ong) => ong.id === Number(ongId));
+
+  const goalPercentage =
+    (Number(ongData?.current_goal) / Number(ongData?.money_goal)) * 100;
+
   const navigate = useNavigate();
-  const PetCard = (pic: string, name: string) => {
+  const PetCard = (pic: string, name: string, id: number) => {
     return (
-      <Grid item xs={6}>
+      <Grid item xs={6} key={id}>
         <Box
           display="flex"
           flexDirection="column"
@@ -40,8 +76,13 @@ const OngPage: FC<OngPageProps> = () => {
           borderRadius={1}
         >
           <Card sx={{ width: "100%" }}>
-            <CardActionArea onClick={() => navigate("pet")}>
-              <CardMedia component="img" image={pic} />
+            <CardActionArea onClick={() => navigate(`pet/${id}`)}>
+              <CardMedia
+                component="img"
+                image={pic}
+                width="150px"
+                height="100px"
+              />
             </CardActionArea>
           </Card>
           <Typography marginTop="3px">{name}</Typography>
@@ -53,7 +94,7 @@ const OngPage: FC<OngPageProps> = () => {
   return (
     <>
       <img
-        src={OngBanner}
+        src={ongData?.banner}
         alt="ong banner"
         style={{
           width: "100%",
@@ -64,14 +105,14 @@ const OngPage: FC<OngPageProps> = () => {
         }}
       />
       <Stack spacing={2} paddingX={5} marginY={18}>
-        <Avatar src={OngImg} sx={{ width: 90, height: 90 }} />
+        <Avatar src={ongData?.logo} sx={{ width: 90, height: 90 }} />
         <Box display="flex" justifyContent="space-between">
           <Typography
             variant="h5"
             fontWeight="600"
             sx={{ filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))" }}
           >
-            Cantinho da Filó
+            {ongData?.name}
           </Typography>
           <VerifiedIcon />
         </Box>
@@ -82,16 +123,15 @@ const OngPage: FC<OngPageProps> = () => {
           border="1px solid #4881D6"
           borderRadius={1}
         >
-          <Typography>
-            Somos um grupo de pessoas apaixonadas pelos animais e dedicamos
-            nossas vidas para ajudar aqueles que estão perdidos ou abandonados.
-          </Typography>
+          <Typography>{ongData?.description}</Typography>
         </Box>
         <Box>
           <Typography variant="h6">Meta de Arrecadação</Typography>
-          <Typography variant="body2">R$ 75,00 / R$ 100,00</Typography>
+          <Typography variant="body2">
+            R${ongData?.current_goal} / R$ {ongData?.money_goal}
+          </Typography>
           <LinearProgress
-            value={75}
+            value={goalPercentage}
             variant="determinate"
             sx={{
               height: 24,
@@ -103,11 +143,30 @@ const OngPage: FC<OngPageProps> = () => {
         <Box>
           <Typography variant="h6">Nossos Pets</Typography>
           <Grid container spacing={2}>
-            {PetCard(Nina, "Nina")}
-            {PetCard(Luke, "Luke")}
-            {PetCard(Mel, "Mel")}
-            {PetCard(Caramela, "Caramela")}
+            {ongData?.pets.map((pet) => PetCard(pet.photo, pet.name, pet.id))}
           </Grid>
+        </Box>
+        <Box
+          sx={{
+            padding: "16px",
+            border: "1px solid blue",
+            borderRadius: "14px",
+            width: "100vw",
+          }}
+        >
+          <Typography
+            sx={{ paddingBottom: "4px" }}
+            variant="h5"
+            component="div"
+          >
+            Perguntas
+          </Typography>
+
+          <Box sx={{ overflow: "auto", whiteSpace: "nowrap" }}>
+            <Stack direction="row" spacing="11px">
+              {ongData?.faq.map((faq) => FaqCard(faq.question, faq.answer))}
+            </Stack>
+          </Box>
         </Box>
         <Box>
           <Typography variant="h6">Nossas Redes</Typography>
@@ -121,7 +180,7 @@ const OngPage: FC<OngPageProps> = () => {
                 width: 56,
                 "&:hover": { backgroundColor: "#618fd4" },
               }}
-              onClick={() => window.open("http://www.gmail.com")}
+              onClick={() => window.open(`mailto:${ongData?.email}`)}
             >
               @
             </IconButton>
@@ -132,7 +191,7 @@ const OngPage: FC<OngPageProps> = () => {
                 width: 56,
                 "&:hover": { backgroundColor: "#618fd4" },
               }}
-              onClick={() => window.open("http://www.facebook.com")}
+              onClick={() => window.open(ongData?.facebook)}
             >
               <FacebookIcon
                 style={{
@@ -147,7 +206,7 @@ const OngPage: FC<OngPageProps> = () => {
                 width: 56,
                 "&:hover": { backgroundColor: "#618fd4" },
               }}
-              onClick={() => window.open("http://www.instagram.com")}
+              onClick={() => window.open(ongData?.instagram)}
             >
               <InstagramIcon
                 style={{
@@ -173,9 +232,7 @@ const OngPage: FC<OngPageProps> = () => {
         </Box>
         <Box marginBottom={3}>
           <Typography variant="h6">Onde nos encontrar</Typography>
-          <Typography>
-            Rua Juarez Carvalho, 470, Imbiribeira, Recife - PE
-          </Typography>
+          <Typography>{ongData?.address}</Typography>
         </Box>
       </Stack>
     </>

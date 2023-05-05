@@ -1,59 +1,86 @@
-import { Box, Button, Card, Container, IconButton, Stack, Typography } from "@mui/material";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import {
+  Box,
+  Button,
+  Card,
+  Container,
+  IconButton,
+  Stack,
+  Typography,
+} from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { FunctionComponent, useState } from "react";
 import StatCard from "./stats";
 import { useNavigate } from "react-router-dom";
 import { FavoriteOutlined } from "@mui/icons-material";
-
+import { Pet } from "../../../models/pet";
+import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import WcIcon from "@mui/icons-material/Wc";
 interface HeaderProps {
-    
+  pet?: Pet;
 }
-  
-const Header: FunctionComponent<HeaderProps> = () => {
 
-    const navigate = useNavigate();
+const Header: FunctionComponent<HeaderProps> = ({ pet }) => {
+  const navigate = useNavigate();
 
-    const [favorite, setFavorite] = useState<boolean>(false)
+  const [favorite, setFavorite] = useState<boolean>(false);
 
-    return (
-        <Container sx={{width: "100%", marginTop: 2}}>
-            <Stack direction="column" justifyContent="space-between">
+  return (
+    <Container sx={{ width: "100%", marginTop: 2 }}>
+      <Stack direction="column" justifyContent="space-between">
+        {/* Top buttons */}
+        <Stack direction="row" justifyContent="space-between">
+          <Box sx={{ backgroundColor: "white", borderRadius: "100%" }}>
+            <IconButton
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              <ArrowBackIcon color="primary" />
+            </IconButton>
+          </Box>
+          <Box sx={{ backgroundColor: "white", borderRadius: "100%" }}>
+            <IconButton
+              onClick={() => {
+                setFavorite(!favorite);
+              }}
+            >
+              {favorite ? (
+                <FavoriteOutlined color="secondary" />
+              ) : (
+                <FavoriteBorderIcon color="secondary" />
+              )}
+            </IconButton>
+          </Box>
+        </Stack>
 
-                {/* Top buttons */}
-                <Stack direction="row" justifyContent="space-between">
-                    <Box sx={{backgroundColor: 'white', borderRadius: '100%'}}>
-                        <IconButton
-                        onClick={() => {navigate(-1)}}
-                        >
-                            <ArrowBackIcon color="primary" />
-                        </IconButton>
-                    </Box>
-                    <Box sx={{backgroundColor: 'white', borderRadius: '100%'}}>
-                        <IconButton
-                        onClick={() => {
-                            setFavorite(!favorite)
-                        }}
-                        >
-                            {favorite
-                            ? <FavoriteOutlined color='secondary' />
-                            : <FavoriteBorderIcon color="secondary" />
-                            }
-                        </IconButton>
-                    </Box>
-                </Stack>
+        {/* Bottom info */}
+        <Stack
+          direction="column"
+          justifyContent="space-between"
+          spacing={2}
+          sx={{ marginTop: "20vh", marginBottom: "2vh" }}
+        >
+          <Typography variant="h3" color={"white"} fontWeight={"bold"}>
+            {pet?.name}
+          </Typography>
 
-                {/* Bottom info */}
-                <Stack direction="column" justifyContent="space-between" spacing={2} sx={{marginTop: "20vh", marginBottom: "2vh"}}>
-                    <Typography variant="h3" color={"white"} fontWeight={"bold"}>{"Alfredo"}</Typography>
-                    
-                    <Stack direction="row" spacing={3} sx={{overflowX: "scroll"}}>
-                        <StatCard />
-                        <StatCard />
-                        <StatCard />
-                    </Stack>
-                    
-                    {/* <Card sx={{borderRadius: 4, padding: 1, width: 120}}>
+          <Stack direction="row" spacing={3} sx={{ overflowX: "scroll" }}>
+            <StatCard
+              title="Peso"
+              stat={`${pet?.weight} kg`}
+              logo={FitnessCenterIcon}
+            />
+            <StatCard
+              title="Idade"
+              stat={`${pet?.age} anos`}
+              logo={CalendarMonthIcon}
+            />
+            <StatCard title="Sexo" stat={pet?.sex || ""} logo={WcIcon} />
+          </Stack>
+
+          {/* <Card sx={{borderRadius: 4, padding: 1, width: 120}}>
                         <Typography variant="h6" fontWeight={"semi-bold"}>{"Peso"}</Typography>
                     </Card>
                     <Card 
@@ -73,12 +100,10 @@ const Header: FunctionComponent<HeaderProps> = () => {
                     >
                         <Typography color="white" variant="h6" fontWeight={"semi-bold"}>{"10 Kg"}</Typography>
                     </Card> */}
-                </Stack>
+        </Stack>
+      </Stack>
+    </Container>
+  );
+};
 
-            </Stack>
-        </Container>
-    );
-}
- 
 export default Header;
-
