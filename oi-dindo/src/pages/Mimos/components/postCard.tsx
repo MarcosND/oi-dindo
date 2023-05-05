@@ -5,6 +5,7 @@ import theme from "../../../global/theme";
 import Lottie from "react-lottie-player";
 import animatedPetJSON from '../../../images/animatedPet.json';
 import SharingComponent from "../../../components/Sharing";
+import { Opacity } from "@mui/icons-material";
 
 interface PostCardProps {
 
@@ -56,7 +57,7 @@ const PostCard = () => {
     return (<>
         <Box>
             {/* Render the list of posts here */}
-            <Card sx={{ borderRadius: 2, }}>
+            <Card sx={{ borderRadius: 2, backgroundColor: "#E8F4FC" }}>
                 <CardContent>
                     <Stack direction="row">
                         <Typography variant="h6" component="div">
