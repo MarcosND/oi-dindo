@@ -16,6 +16,7 @@ import avatar from "../../images/Alfredo.png";
 import BannerImage from "../../components/BannerImage";
 import Header from "./components/header";
 import theme from "../../global/theme";
+import Ong from "../../images/ong_image.png";
 import { useLocation, useNavigate } from "react-router-dom";
 
 interface PetPageProps {}
@@ -139,7 +140,7 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
 
           <CardActions>
             <Stack direction="row" spacing={"11px"}>
-              <Avatar src={avatar} />
+              <Avatar src={Ong} />
               <Button
                 sx={{ borderRadius: 2 }}
                 variant="contained"
