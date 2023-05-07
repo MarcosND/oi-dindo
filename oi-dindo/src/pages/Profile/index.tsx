@@ -21,7 +21,7 @@ const Profile: FC<ProfileProps> = ({ setIsAuth }) => {
           height: 150,
           width: 150,
           marginTop: 3,
-          border: "2px solid #FAB15D",
+          border: "2px solid #4881D6",
         }}
         src={Img}
       />
@@ -37,12 +37,12 @@ const Profile: FC<ProfileProps> = ({ setIsAuth }) => {
           paddingY: 2,
           paddingX: 4,
           boxSizing: "border-box",
-          borderBottom: "1px solid #D67224",
+          borderBottom: "1px solid #4881D6",
         }}
         onClick={() => navigate("/mimos")}
       >
         <Box display="flex" alignItems="center">
-          <Favorite color="secondary" />
+          <Favorite color="primary" />
           <Typography
             variant="button"
             sx={{
@@ -55,9 +55,9 @@ const Profile: FC<ProfileProps> = ({ setIsAuth }) => {
             Meus Mimos
           </Typography>
         </Box>
-        <Arrow color="secondary" />
+        <Arrow color="primary" />
       </Button>
-      <Divider sx={{ background: "#FAB15D" }} />
+      <Divider sx={{ background: "#4881D6" }} />
       <Button
         sx={{
           display: "flex",
@@ -67,12 +67,12 @@ const Profile: FC<ProfileProps> = ({ setIsAuth }) => {
           paddingY: 2,
           paddingX: 4,
           boxSizing: "border-box",
-          borderBottom: "1px solid #D67224",
+          borderBottom: "1px solid #4881D6",
         }}
         onClick={() => navigate("/")}
       >
         <Box display="flex" alignItems="center">
-          <Pet color="secondary" />
+          <Pet color="primary" />
           <Typography
             variant="button"
             sx={{
@@ -85,7 +85,7 @@ const Profile: FC<ProfileProps> = ({ setIsAuth }) => {
             Novidades
           </Typography>
         </Box>
-        <Arrow color="secondary" />
+        <Arrow color="primary" />
       </Button>
       <Button
         sx={{
@@ -96,7 +96,7 @@ const Profile: FC<ProfileProps> = ({ setIsAuth }) => {
           paddingY: 2,
           paddingX: 4,
           boxSizing: "border-box",
-          borderBottom: "1px solid #D67224",
+          borderBottom: "1px solid #4881D6",
         }}
         onClick={() => {
           localStorage.setItem("auth", "false");
@@ -105,7 +105,7 @@ const Profile: FC<ProfileProps> = ({ setIsAuth }) => {
         }}
       >
         <Box display="flex" alignItems="center">
-          <Logout color="secondary" />
+          <Logout color="primary" />
           <Typography
             variant="button"
             sx={{
@@ -118,7 +118,7 @@ const Profile: FC<ProfileProps> = ({ setIsAuth }) => {
             Sair
           </Typography>
         </Box>
-        <Arrow color="secondary" />
+        <Arrow color="primary" />
       </Button>
     </Stack>
   );

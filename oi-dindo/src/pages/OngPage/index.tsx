@@ -14,7 +14,7 @@ import { FC } from "react";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import PhoneIcon from "@mui/icons-material/Phone";
+//import PhoneIcon from "@mui/icons-material/Phone";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
 import { useNavigate, useParams } from "react-router-dom";
@@ -123,7 +123,7 @@ const OngPage: FC<OngPageProps> = () => {
           border="1px solid #4881D6"
           borderRadius={1}
         >
-          <Typography>{ongData?.description}</Typography>
+          <Typography whiteSpace="pre-line">{ongData?.description}</Typography>
         </Box>
         <Box>
           <Typography variant="h6">Meta de Arrecadação</Typography>
@@ -151,7 +151,7 @@ const OngPage: FC<OngPageProps> = () => {
             padding: "16px",
             border: "1px solid blue",
             borderRadius: "14px",
-            width: "100vw",
+            width: "92vw",
           }}
         >
           <Typography
@@ -214,7 +214,7 @@ const OngPage: FC<OngPageProps> = () => {
                 }}
               />
             </IconButton>
-            <IconButton
+            {/* <IconButton
               sx={{
                 backgroundColor: "#4881D6",
                 height: 56,
@@ -227,12 +227,14 @@ const OngPage: FC<OngPageProps> = () => {
                   color: "white",
                 }}
               />
-            </IconButton>
+            </IconButton> */}
           </Box>
         </Box>
         <Box marginBottom={3}>
           <Typography variant="h6">Onde nos encontrar</Typography>
-          <Typography>{ongData?.address}</Typography>
+          <Typography>
+            {ongData?.address} - {ongData?.phone}
+          </Typography>
         </Box>
       </Stack>
     </>

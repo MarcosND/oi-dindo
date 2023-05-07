@@ -7,20 +7,25 @@ import {
   CardMedia,
   IconButton,
   Modal,
+  Avatar,
 } from "@mui/material";
 import { useState, FC } from "react";
 import ShareIcon from "@mui/icons-material/Share";
 import Lottie from "react-lottie-player";
 import animatedPetJSON from "../../../images/animatedPet.json";
 import SharingComponent from "../../../components/Sharing";
+import { useNavigate } from "react-router-dom";
 
 interface PostCardProps {
   image: string;
   text: string;
   owner: string;
+  avatar: string;
+  ongId?: string;
 }
 
-const PostCard: FC<PostCardProps> = ({ image, owner, text }) => {
+const PostCard: FC<PostCardProps> = ({ image, owner, text, avatar, ongId }) => {
+  const navigate = useNavigate();
   const modalBottomBoxStyle = {
     position: "absolute" as "absolute",
     top: "55%",
@@ -59,19 +64,30 @@ const PostCard: FC<PostCardProps> = ({ image, owner, text }) => {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <>
       <Box>
         {/* Render the list of posts here */}
         <Card sx={{ borderRadius: 2, backgroundColor: "#E8F4FC" }}>
-          <CardContent>
-            <Stack direction="row">
-              <Typography variant="h6" component="div">
-                {owner}
-              </Typography>
+          <CardContent sx={{ paddingBottom: 0 }}>
+            <Stack
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Box
+                display="flex"
+                alignItems="center"
+                onClick={() => {
+                  if (ongId) navigate(`../ong/${ongId}`, { replace: true });
+                }}
+              >
+                <Avatar src={avatar} />
+                <Typography variant="h6" component="div" ml={1}>
+                  {owner}
+                </Typography>
+              </Box>
+              <Typography>03/05/23</Typography>
             </Stack>
           </CardContent>
           <CardMedia
@@ -85,12 +101,19 @@ const PostCard: FC<PostCardProps> = ({ image, owner, text }) => {
             }}
           />
           <CardContent>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="black">
               {text}
             </Typography>
           </CardContent>
-          <IconButton aria-label="share" onClick={handleClickOpen}>
-            <ShareIcon />
+          <IconButton
+            aria-label="share"
+            onClick={handleClickOpen}
+            sx={{ paddingX: 2, paddingBottom: 2 }}
+          >
+            <ShareIcon sx={{ color: "black" }} />
+            <Typography ml={1} color="black" variant="body2" fontWeight="500">
+              Compartilhe
+            </Typography>
           </IconButton>
         </Card>
       </Box>
@@ -121,7 +144,7 @@ const PostCard: FC<PostCardProps> = ({ image, owner, text }) => {
             <Stack direction="row" justifyContent={"center"} marginTop={2}>
               <SharingComponent
                 shareUrl={"https://www.instagram.com/cantinhofilo/"}
-                title={`Econtrei ${"Alfredo"} do ${"Cantinho da Filó"} pelo app Oi, Dindo!\n`}
+                title={`Encontrei ${"Alfredo"} do ${"Cantinho da Filó"} pelo app Oi, Dindo!\n`}
               />
             </Stack>
           </Box>

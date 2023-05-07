@@ -9,6 +9,7 @@ import {
   Box,
   LinearProgress,
   Stack,
+  Modal,
 } from "@mui/material";
 import ShareIcon from "@mui/icons-material/Share";
 import { FunctionComponent, useEffect, useState } from "react";
@@ -17,8 +18,44 @@ import Header from "./components/header";
 import theme from "../../global/theme";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Ongs } from "../../models/mockData";
+import Lottie from "react-lottie-player";
+import animatedPetJSON from "../../images/animatedPet.json";
+import SharingComponent from "../../components/Sharing";
 
 interface PetPageProps {}
+
+const modalBottomBoxStyle = {
+  position: "absolute" as "absolute",
+  top: "55%",
+  left: "50%",
+  transform: "translate(-50%, -45%)",
+  width: "80%",
+  bgcolor: "background.paper",
+  borderRadius: "0 0 12px 12px",
+  boxShadow: 24,
+  pt: 8,
+  pb: 4,
+  px: 4,
+};
+const modalTopBoxStyle = {
+  zIndex: 2,
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -140%)",
+  height: "20%",
+  width: "80%",
+  bgcolor: "#8CC7F0",
+  borderRadius: "12px 12px 36px 0px",
+  p: 4,
+};
+const modalAnimationStyle = {
+  position: "absolute" as "absolute",
+  left: "50%",
+  transform: "translate(-50%, -56%)",
+  width: 300,
+  zIndex: 2,
+};
 
 const PetPage: FunctionComponent<PetPageProps> = () => {
   const { petId, ongId } = useParams();
@@ -50,6 +87,11 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
     };
   }, []);
 
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   return (
     <Box>
       <BannerImage src={petData?.photo} distance={scrollOffset} />
@@ -58,7 +100,7 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
         <div
           style={{
             width: "99%",
-            height: "110%",
+            height: "120%",
             objectFit: "cover",
             position: "absolute",
             overflowX: "hidden",
@@ -100,6 +142,7 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
                   sx={{ borderRadius: 2, minHeight: 40, margin: 0 }}
                   variant="contained"
                   color="primary"
+                  onClick={handleClickOpen}
                 >
                   <ShareIcon />
                 </Button>
@@ -126,8 +169,6 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
             </Stack>
           </CardContent>
 
-          <CardActions></CardActions>
-
           <CardContent>
             <Typography
               sx={{ paddingBottom: "4px" }}
@@ -136,12 +177,29 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
             >
               Sobre o pet:
             </Typography>
-            <Typography variant="body2">{petData?.description}</Typography>
-            {/* <Typography sx={{ paddingTop: "12px" }} variant="body1">
-              #carinhoso #curioso #pelocurto #brincalhão #obediente #sociável
-            </Typography> */}
+            <Typography variant="body2" whiteSpace="pre-line">
+              {petData?.description}
+            </Typography>
+            <Typography
+              mt={1}
+              sx={{ paddingBottom: "4px" }}
+              variant="h5"
+              component="div"
+            >
+              Gastos Mensais:
+            </Typography>
+            <Typography paddingLeft={2.5}>
+              <ul>
+                <li>Equipe veterinária: R$ 100,00 / mês</li>
+                <li>Banho: R$ 45,00 / mês</li>
+                <li>Vacina: R$ 6,70 / mês</li>
+                <li>Antipulgas: R$ 120,00 / mês</li>
+              </ul>
+            </Typography>
+            <Typography fontWeight="bold" display="flex">
+              Total:<Typography ml={1}> R$ 271,70 / mês</Typography>
+            </Typography>
           </CardContent>
-
           <CardActions>
             <Stack direction="row" spacing={"11px"}>
               <Avatar
@@ -161,6 +219,39 @@ const PetPage: FunctionComponent<PetPageProps> = () => {
           </CardActions>
         </Card>
       </Container>
+      <Modal
+        open={open}
+        onClose={() => {
+          setOpen(false);
+        }}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Stack>
+          <Box sx={modalTopBoxStyle}>
+            <Lottie
+              loop
+              animationData={animatedPetJSON}
+              play
+              style={modalAnimationStyle}
+            />
+          </Box>
+          <Box sx={modalBottomBoxStyle}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Compartilhe sobre mim!
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Toda a ajuda é válida e quanto mais gente me ajudando, melhor.
+            </Typography>
+            <Stack direction="row" justifyContent={"center"} marginTop={2}>
+              <SharingComponent
+                shareUrl={ongData?.instagram || ""}
+                title={`Apadrinhe ${petData?.name} da Ong ${ongData?.name} pelo app Oi, Dindo!\n`}
+              />
+            </Stack>
+          </Box>
+        </Stack>
+      </Modal>
     </Box>
   );
 };

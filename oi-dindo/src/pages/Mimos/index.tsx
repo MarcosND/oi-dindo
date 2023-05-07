@@ -7,6 +7,7 @@ import { ReactComponent as CustomPetIcon } from "../../images/PetIcon.svg";
 import PostCard from "./components/postCard";
 
 import Luna from "../../images/Luna.png";
+import MundoMarley from "../../images/MarleyLogo.jpg";
 
 const ScrollableTabs = styled(Tabs)({
   overflowX: "auto",
@@ -29,7 +30,7 @@ const MimosPage = () => {
       }}
     >
       <Box py={2}>
-        <Typography variant="h4" align="left">
+        <Typography variant="h4" align="left" fontWeight="500">
           Oi, Dinde!
           <br />
           Veio me ver?
@@ -84,18 +85,22 @@ const MimosPage = () => {
       >
         <PostCard
           image={Luna}
-          owner="Abrigo Mundo do Marley"
+          owner="Mundo do Marley"
           text="A luna está animada e passeando hoje!"
+          avatar={MundoMarley}
+          ongId={"2"}
         />
         <PostCard
           image={Luna}
-          owner="Abrigo Mundo do Marley"
+          owner="Mundo do Marley"
           text="A luna está animada e passeando hoje!"
+          avatar={MundoMarley}
         />
         <PostCard
           image={Luna}
-          owner="Abrigo Mundo do Marley"
+          owner="Mundo do Marley"
           text="A luna está animada e passeando hoje!"
+          avatar={MundoMarley}
         />
       </Stack>
     </Container>

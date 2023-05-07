@@ -28,9 +28,12 @@ interface HomeProps {}
 const HomePage: FC<HomeProps> = () => {
   const navigate = useNavigate();
 
-  const PetCard = (pic: string, id: number, ongId: number) => {
+  const PetCard = (pic: string, id: number, ongId: number, name: string) => {
     return (
-      <CardActionArea onClick={() => navigate(`ong/${ongId}/pet/${id}`)}>
+      <CardActionArea
+        onClick={() => navigate(`ong/${ongId}/pet/${id}`)}
+        sx={{ position: "relative" }}
+      >
         <CardMedia
           sx={{
             width: "40vw",
@@ -41,6 +44,9 @@ const HomePage: FC<HomeProps> = () => {
           component="img"
           image={pic}
         />
+        <Typography top={185} left={10} position="absolute" color="white">
+          {name}
+        </Typography>
       </CardActionArea>
     );
   };
@@ -48,7 +54,7 @@ const HomePage: FC<HomeProps> = () => {
   return (
     <Container
       sx={{
-        width: "100vw",
+        width: "95vw",
         height: "100vh",
         background: "linear-gradient(to bottom right, #8CC7F0, #FFFFFF 40%)",
         margin: "0px",
@@ -73,10 +79,10 @@ const HomePage: FC<HomeProps> = () => {
             sx={{ overflow: "auto", whiteSpace: "nowrap", paddingLeft: "32px" }}
           >
             <Stack direction="row" spacing={"11px"}>
-              {PetCard(Peludo, 21, 2)}
-              {PetCard(Dourado, 11, 1)}
-              {PetCard(Luna, 22, 2)}
-              {PetCard(Liz, 12, 1)}
+              {PetCard(Peludo, 21, 2, "Peludo")}
+              {PetCard(Dourado, 11, 1, "Dourado")}
+              {PetCard(Luna, 22, 2, "Luna")}
+              {PetCard(Liz, 12, 1, "Liz")}
             </Stack>
           </Box>
         </Stack>
@@ -155,7 +161,7 @@ const HomePage: FC<HomeProps> = () => {
         </Stack>
 
         <Stack
-          sx={{ paddingLeft: "32px", paddingRight: "32px" }}
+          paddingLeft={2}
           direction={"column"}
           spacing={"24px"}
           height={"65%"}
@@ -164,16 +170,19 @@ const HomePage: FC<HomeProps> = () => {
             image={Morning}
             owner="Dindo Admin"
             text="Bom dia! Preparado para apadrinhar um novo pet hoje? :)"
+            avatar={Morning}
           />
           <PostCard
             image={Morning}
             owner="Dindo Admin"
             text="Bom dia! Preparado para apadrinhar um novo pet hoje? :)"
+            avatar={Morning}
           />
           <PostCard
             image={Morning}
             owner="Dindo Admin"
             text="Bom dia! Preparado para apadrinhar um novo pet hoje? :)"
+            avatar={Morning}
           />
         </Stack>
 

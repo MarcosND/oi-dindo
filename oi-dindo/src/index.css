@@ -3,3 +3,7 @@
 body, html {
     font-family: 'Montserrat', sans-serif;
 }
+
+ul {
+    padding:0
+}
