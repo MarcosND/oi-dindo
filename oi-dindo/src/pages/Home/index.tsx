@@ -22,6 +22,9 @@ import Liz from "../../images/Liz.png";
 import Morning from "../../images/Morning.png";
 import { useNavigate } from "react-router-dom";
 import { Ongs } from "../../models/mockData";
+import OiDindoIcon from "../../images/OiDindoIcon.png";
+import PetHelpImage from "../../images/PetHelpBanner.png";
+import ThanksImage from "../../images/ThankYou.jpg";
 
 interface HomeProps {}
 
@@ -170,19 +173,22 @@ const HomePage: FC<HomeProps> = () => {
             image={Morning}
             owner="Dindo Admin"
             text="Bom dia! Preparado para apadrinhar um novo pet hoje? :)"
-            avatar={Morning}
+            avatar={OiDindoIcon}
+            isNews
           />
           <PostCard
-            image={Morning}
+            image={PetHelpImage}
             owner="Dindo Admin"
-            text="Bom dia! Preparado para apadrinhar um novo pet hoje? :)"
-            avatar={Morning}
+            text="Hoje estamos muito animados para anunciar a nova Ong parceira do Oi, Dindo! Sejam bem vindos ao time, PetHelp!"
+            avatar={OiDindoIcon}
+            isNews
           />
           <PostCard
-            image={Morning}
+            image={ThanksImage}
             owner="Dindo Admin"
-            text="Bom dia! Preparado para apadrinhar um novo pet hoje? :)"
-            avatar={Morning}
+            text="Hoje é dia de reconhecer todos os nossos maravilhosos parceiros que tornar o Oi Dindo possível. Obrigado!"
+            avatar={OiDindoIcon}
+            isNews
           />
         </Stack>
 

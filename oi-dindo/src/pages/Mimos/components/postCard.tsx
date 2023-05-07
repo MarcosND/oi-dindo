@@ -22,9 +22,17 @@ interface PostCardProps {
   owner: string;
   avatar: string;
   ongId?: string;
+  isNews?: boolean;
 }
 
-const PostCard: FC<PostCardProps> = ({ image, owner, text, avatar, ongId }) => {
+const PostCard: FC<PostCardProps> = ({
+  image,
+  owner,
+  text,
+  avatar,
+  ongId,
+  isNews,
+}) => {
   const navigate = useNavigate();
   const modalBottomBoxStyle = {
     position: "absolute" as "absolute",
@@ -143,8 +151,12 @@ const PostCard: FC<PostCardProps> = ({ image, owner, text, avatar, ongId }) => {
             </Typography>
             <Stack direction="row" justifyContent={"center"} marginTop={2}>
               <SharingComponent
-                shareUrl={"https://www.instagram.com/cantinhofilo/"}
-                title={`Encontrei ${"Alfredo"} do ${"Cantinho da Filó"} pelo app Oi, Dindo!\n`}
+                shareUrl="https://bitly.com/OiDindo"
+                title={
+                  !isNews
+                    ? `Olha que coisa mais linda esse mimo que eu recebi da ong ${owner} no aplicativo Oi Dindo!`
+                    : "Olha essa novidade massa do aplicativo Oi Dindo!"
+                }
               />
             </Stack>
           </Box>
